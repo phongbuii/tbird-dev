@@ -143,6 +143,16 @@ const useStyles = createStyles(({ token }) => {
       marginLeft: '8px',
       color: token.colorTextHeading,
     },
+    specialFile: {
+      marginLeft: '16px',
+      [`@media screen and (max-width: ${token.screenMD}px)`]: {
+        marginTop: '16px',
+        marginLeft: 0,
+      },
+      [`@media screen and (max-width: ${token.screenLG}px)`]: {
+        marginLeft: '16px',
+      },
+    },
     rankingTitle: {
       [`@media screen and (max-width: ${token.screenMD}px)`]: {
         marginTop: '16px',

@@ -1,4 +1,4 @@
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import { BellOutlined, QuestionCircleOutlined, SearchOutlined } from '@ant-design/icons';
 import { SelectLang as UmiSelectLang } from '@umijs/max';
 
 export type SiderTheme = 'light' | 'dark';
@@ -19,6 +19,38 @@ export const Question = () => {
       }}
     >
       <QuestionCircleOutlined />
+    </div>
+  );
+};
+export const Notification = () => {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        height: 26,
+      }}
+      onClick={() => {
+        // Handle notification click event
+        console.log('Notification clicked');
+      }}
+    >
+      <BellOutlined />
+    </div>
+  );
+};
+export const Search = () => {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        height: 26,
+      }}
+      onClick={() => {
+        // Handle search click event
+        console.log('Search clicked');
+      }}
+    >
+      <SearchOutlined />
     </div>
   );
 };
