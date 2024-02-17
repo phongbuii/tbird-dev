@@ -102,6 +102,14 @@ export default [
     routes: [],
   },
   {
+    path: '/report-detail',
+    name: 'Chi tiết báo cáo',
+    layout: false,
+    icon: 'fund',
+    component: './report-detail',
+    routes: [],
+  },
+  {
     path: '/',
     redirect: '/dashboard',
     // redirect: '/dashboard/analysis',

@@ -1,6 +1,9 @@
+import { ItemSelect } from '@/pages/analyze-files';
+import ModalPickDocs from '@/pages/analyze-files/Item/ModalPickDocs';
 import { MoreOutlined, PlusOutlined } from '@ant-design/icons';
 import { ProTable } from '@ant-design/pro-components';
 import { Button, Card, Dropdown, Menu, Space } from 'antd';
+import { useState } from 'react';
 
 const data = [
   {
@@ -80,19 +83,22 @@ const columns = [
   },
 ];
 const ListReport = () => {
+  const [isModalOpenDoc, setIsModalOpenDoc] = useState(false);
   const handleFilePicker = () => {
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.webkitdirectory = true;
-    fileInput.click();
+    setIsModalOpenDoc(true);
+    console.log('OKEEEE');
+    // const fileInput = document.createElement('input');
+    // fileInput.type = 'file';
+    // fileInput.webkitdirectory = true;
+    // fileInput.click();
 
-    fileInput.addEventListener('change', (event) => {
-      const selectedFolder = event.target.files[0];
-      console.log('Selected folder:', selectedFolder);
-      // Perform any desired operations with the selected folder
-    });
+    // fileInput.addEventListener('change', (event) => {
+    //   const selectedFolder = event.target.files[0];
+    //   console.log('Selected folder:', selectedFolder);
+    //   // Perform any desired operations with the selected folder
+    // });
   };
-
+  const onFinishDocs = (data: ItemSelect) => {};
   return (
     <Card
       bordered={false}
@@ -102,7 +108,7 @@ const ListReport = () => {
       title="Danh sách báo cáo"
       extra={
         <Space>
-          <Button onProgress={handleFilePicker} icon={<PlusOutlined />}>
+          <Button onClick={handleFilePicker} icon={<PlusOutlined />}>
             Thêm mới
           </Button>
         </Space>
@@ -118,6 +124,11 @@ const ListReport = () => {
         toolBarRender={false}
         dataSource={data}
         columns={columns}
+      />
+      <ModalPickDocs
+        isModalOpen={isModalOpenDoc}
+        setIsModalOpen={setIsModalOpenDoc}
+        onFinish={onFinishDocs}
       />
     </Card>
   );

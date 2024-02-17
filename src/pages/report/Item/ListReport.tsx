@@ -1,5 +1,6 @@
 import { DownOutlined, MoreOutlined } from '@ant-design/icons';
 import { ProTable } from '@ant-design/pro-components';
+import { history } from '@umijs/max';
 import { Badge, Button, Card, Dropdown, Menu, Space } from 'antd';
 
 const data = [
@@ -86,6 +87,13 @@ const columns = [
   },
 ];
 const ListReport = () => {
+  const handleRowClick = (record) => {
+    console.log('Clicked row:', record);
+    history.push('/report-detail');
+
+    // Add your logic for handling row click event
+  };
+
   return (
     <Card
       bordered={false}
@@ -118,6 +126,9 @@ const ListReport = () => {
         toolBarRender={false}
         dataSource={data}
         columns={columns}
+        onRow={(record) => ({
+          onClick: () => handleRowClick(record),
+        })}
       />
     </Card>
   );

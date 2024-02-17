@@ -1,8 +1,12 @@
+import { history } from '@umijs/max';
 import { Button, Card, Checkbox, Typography } from 'antd';
 
 const { Text, Title } = Typography;
 
 const BottomButton = () => {
+  const handleAnalysisClick = () => {
+    history.push('/report');
+  };
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }}>
       <Card style={{ width: '50%' }} bodyStyle={{ paddingRight: 0 }}>
@@ -16,7 +20,9 @@ const BottomButton = () => {
           </div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
-          <Button type="primary">Phân tích</Button>
+          <Button onClick={handleAnalysisClick} type="primary">
+            Phân tích
+          </Button>
         </div>
       </Card>
     </div>
