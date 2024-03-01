@@ -1,27 +1,27 @@
 import { DownOutlined, MoreOutlined } from '@ant-design/icons';
 import { ProTable } from '@ant-design/pro-components';
-import { history } from '@umijs/max';
-import { Badge, Button, Card, Dropdown, Menu, Space } from 'antd';
+import { Button, Card, Dropdown, Menu, Space, Tag } from 'antd';
 
 const data = [
   {
     stt: 1,
-    id: '001',
-    date: '22/1/2023',
-    fileName: 'File1.docx',
-    desc: 'Mail công ty A',
-    size: '10 MB',
-    status: 'success',
+    id: 'file1',
+    password: 'password1',
+    rate: '4/10',
+    path: '/path/to/file1',
+    size: '10MB',
+    keyword: ['keyword1', 'keyword2', 'keyword3'],
   },
   {
     stt: 2,
-    id: '002',
-    date: '22/1/2023',
-    fileName: 'File2.pdf',
-    desc: 'Lathrop Ave, Harvey',
-    size: '5 MB',
-    status: 'processing',
+    id: 'file2',
+    password: 'password2',
+    rate: '3/10',
+    path: '/path/to/file2',
+    size: '5MB',
+    keyword: ['keyword4', 'keyword5'],
   },
+  // Add more data objects with keywords as needed
 ];
 const columns = [
   {
@@ -30,24 +30,24 @@ const columns = [
     key: 'stt',
   },
   {
-    title: 'ID',
+    title: 'Tên file',
     dataIndex: 'id',
     key: 'id',
   },
   {
-    title: 'Ngày tạo',
-    dataIndex: 'date',
-    key: 'date',
+    title: 'Mật khẩu',
+    dataIndex: 'password',
+    key: 'password',
   },
   {
-    title: 'Tên bộ tài liệu',
-    dataIndex: 'fileName',
-    key: 'fileName',
+    title: 'Đánh giá',
+    dataIndex: 'rate',
+    key: 'rate',
   },
   {
-    title: 'Mô tả',
-    dataIndex: 'desc',
-    key: 'desc',
+    title: 'Đường dẫn',
+    dataIndex: 'path',
+    key: 'path',
   },
   {
     title: 'Kích cỡ',
@@ -55,15 +55,18 @@ const columns = [
     key: 'size',
   },
   {
-    title: 'Trạng thái',
-    dataIndex: 'status',
-    key: 'status',
-    render: (text: React.ReactNode) => {
-      if (text === 'success') {
-        return <Badge status="success" text="Đã xử lý" />;
-      }
-      return <Badge status="processing" text="Đang xử lý" />;
-    },
+    title: 'Keyword',
+    dataIndex: 'keyword',
+    key: 'keyword',
+    render: (keywords) => (
+      <div>
+        {keywords.map((keyword, index) => (
+          <Tag key={index} color="blue">
+            {keyword}
+          </Tag>
+        ))}
+      </div>
+    ),
   },
   {
     title: 'Actions',
@@ -86,21 +89,14 @@ const columns = [
     ),
   },
 ];
-const ListReport = () => {
-  const handleRowClick = (record) => {
-    console.log('Clicked row:', record);
-    history.push('/report-detail');
-
-    // Add your logic for handling row click event
-  };
-
+const ReportDocs = () => {
   return (
     <Card
       bordered={false}
       style={{
         marginTop: 32,
       }}
-      title="Danh sách báo cáo"
+      title="Danh sách báo cáo (Bộ tài liệu: “Dữ liệu outlook công ty A”)"
       extra={
         <Space>
           <Dropdown
@@ -126,11 +122,8 @@ const ListReport = () => {
         toolBarRender={false}
         dataSource={data}
         columns={columns}
-        onRow={(record) => ({
-          onClick: () => handleRowClick(record),
-        })}
       />
     </Card>
   );
 };
-export default ListReport;
+export default ReportDocs;

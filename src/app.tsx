@@ -92,11 +92,11 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
       },
     ],
     links: [
-      <Link key="openapi" to="/" target="_blank">
+      <Link key="openapi" to="/support">
         <QuestionCircleOutlined />
         <span>Trợ giúp</span>
       </Link>,
-      <Link key="openapi" to="/" target="_blank">
+      <Link key="openapi" to="/contact">
         <MailOutlined />
         <span>Liên hệ</span>
       </Link>,

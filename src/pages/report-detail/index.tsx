@@ -4,6 +4,7 @@ import { useRequest } from '@umijs/max';
 import { Badge, Card, Descriptions, Divider } from 'antd';
 import type { FC } from 'react';
 import React from 'react';
+import ReportDocs from './components/ReportDocs';
 import type { BasicGood, BasicProgress } from './data.d';
 import { queryBasicProfile } from './service';
 import useStyles from './style.style';
@@ -203,6 +204,12 @@ const Basic: FC = () => {
           <Descriptions.Item label="Loại bỏ">10%</Descriptions.Item>
           <Descriptions.Item label="Từ khóa chính">a,b,c</Descriptions.Item>
         </Descriptions>
+        <Divider
+          style={{
+            marginBottom: 32,
+          }}
+        />
+        <ReportDocs />
         <Divider
           style={{
             marginBottom: 32,

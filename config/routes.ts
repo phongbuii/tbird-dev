@@ -101,17 +101,35 @@ export default [
     component: './analysis-sample',
     routes: [],
   },
-  {
-    path: '/report-detail',
-    name: 'Chi tiết báo cáo',
-    layout: false,
-    icon: 'fund',
-    component: './report-detail',
-    routes: [],
-  },
+
   {
     path: '/',
-    redirect: '/dashboard',
+    // redirect: '/dashboard',
+    routes: [
+      {
+        path: '/support',
+        name: 'Trợ giúp',
+        layout: false,
+        icon: 'fund',
+        component: './support',
+      },
+      {
+        path: '/contact',
+        name: 'Liên hệ',
+        layout: false,
+        icon: 'fund',
+        component: './contact',
+      },
+      {
+        path: '/report-detail',
+        name: 'Chi tiết báo cáo',
+        layout: false,
+        icon: 'fund',
+        component: './report-detail',
+        routes: [],
+      },
+    ],
+
     // redirect: '/dashboard/analysis',
   },
   {

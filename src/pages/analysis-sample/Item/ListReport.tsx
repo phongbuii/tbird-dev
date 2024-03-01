@@ -10,6 +10,7 @@ const data = [
     description: 'Mô tả 1',
     language: 'Tiếng Việt',
     keywordCount: 10,
+    name: 'Mẫu số 1',
     status: 'success',
   },
   {
@@ -18,6 +19,7 @@ const data = [
     description: 'Mô tả 2',
     language: 'Tiếng Anh',
     keywordCount: 5,
+    name: 'Mẫu số 2',
     status: 'processing',
   },
 ];
@@ -28,6 +30,12 @@ const columns = [
     key: 'id',
     sorter: (a, b) => a.id - b.id,
   },
+  {
+    title: 'Tên mẫu',
+    dataIndex: 'name',
+    key: 'name',
+  },
+
   {
     title: 'Ngày tạo',
     dataIndex: 'date',

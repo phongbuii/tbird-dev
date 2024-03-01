@@ -74,7 +74,13 @@ const ModalPickSample = ({ isModalOpen, setIsModalOpen, onFinish }: ItemProps) =
           <p className="ant-upload-text">Chọn tệp</p>
           <p className="ant-upload-hint">Kéo thả tệp để chọn</p>
         </Dragger>
-        <Select
+        <Input
+          placeholder="Loại tài liệu"
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+          style={{ marginTop: 16 }}
+        />
+        {/* <Select
           style={{ width: '100%', marginTop: 16 }}
           placeholder="Loại tài liệu"
           onChange={(val) => setType(val)}
@@ -82,7 +88,7 @@ const ModalPickSample = ({ isModalOpen, setIsModalOpen, onFinish }: ItemProps) =
           <Option value="email">email</Option>
           <Option value="pdf">pdf</Option>
           <Option value="word">word</Option>
-        </Select>
+        </Select> */}
         <Input
           placeholder="Title"
           value={title}

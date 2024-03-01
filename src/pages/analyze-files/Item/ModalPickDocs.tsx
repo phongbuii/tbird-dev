@@ -12,7 +12,9 @@ const { Dragger } = Upload;
 
 const props: UploadProps = {
   name: 'file',
-  multiple: true,
+  // multiple: true,
+  directory: true, //Set directory to true
+
   action: 'https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188',
   onChange(info) {
     const { status } = info.file;
@@ -66,10 +68,10 @@ const ModalPickDocs = ({ isModalOpen, setIsModalOpen, onFinish }: ItemProps) => 
           <p className="ant-upload-drag-icon">
             <InboxOutlined />
           </p>
-          <p className="ant-upload-text">Chọn tệp</p>
-          <p className="ant-upload-hint">Kéo thả tệp để chọn</p>
+          <p className="ant-upload-text">Chọn thư mực</p>
+          <p className="ant-upload-hint">Kéo thả thư mực để chọn</p>
         </Dragger>
-        <Select
+        {/* <Select
           style={{ width: '100%', marginTop: 16 }}
           placeholder="Loại tài liệu"
           onChange={(val) => setType(val)}
@@ -77,7 +79,13 @@ const ModalPickDocs = ({ isModalOpen, setIsModalOpen, onFinish }: ItemProps) => 
           <Option value="email">email</Option>
           <Option value="pdf">pdf</Option>
           <Option value="word">word</Option>
-        </Select>
+        </Select> */}
+        <Input
+          placeholder="Loại tài liệu"
+          value={type}
+          onChange={(e) => setType(e.target.value)}
+          style={{ marginTop: 16 }}
+        />
         <Input
           placeholder="Title"
           value={title}
