@@ -1,26 +1,28 @@
-import { DownOutlined, MoreOutlined } from '@ant-design/icons';
+import { ItemSelect } from '@/pages/analyze-files';
+import ModalPickDocs from '@/pages/analyze-files/Item/ModalPickDocs';
+import { MoreOutlined, PlusOutlined } from '@ant-design/icons';
 import { ProTable } from '@ant-design/pro-components';
-import { history } from '@umijs/max';
-import { Badge, Button, Card, Dropdown, Menu, Space } from 'antd';
+import { Button, Card, Dropdown, Menu, Space } from 'antd';
+import { useState } from 'react';
 
 const data = [
   {
     stt: 1,
-    id: '001',
-    date: '22/1/2023',
-    fileName: 'File1.docx',
-    desc: 'Mail công ty A',
+    id: 'ABC123',
+    date: '2022-09-30',
+    documentName: 'Tài liệu 1',
+    analysisTemplate: 'Mẫu A',
     size: '10 MB',
-    status: 'success',
+    dataType: 'PDF',
   },
   {
     stt: 2,
-    id: '002',
-    date: '22/1/2023',
-    fileName: 'File2.pdf',
-    desc: 'Lathrop Ave, Harvey',
+    id: 'XYZ456',
+    date: '2022-10-01',
+    documentName: 'Tài liệu 2',
+    analysisTemplate: 'Mẫu B',
     size: '5 MB',
-    status: 'processing',
+    dataType: 'Word',
   },
 ];
 const columns = [
@@ -41,13 +43,13 @@ const columns = [
   },
   {
     title: 'Tên bộ tài liệu',
-    dataIndex: 'fileName',
-    key: 'fileName',
+    dataIndex: 'documentName',
+    key: 'documentName',
   },
   {
-    title: 'Mô tả',
-    dataIndex: 'desc',
-    key: 'desc',
+    title: 'Mẫu phân tích',
+    dataIndex: 'analysisTemplate',
+    key: 'analysisTemplate',
   },
   {
     title: 'Kích cỡ',
@@ -55,15 +57,9 @@ const columns = [
     key: 'size',
   },
   {
-    title: 'Trạng thái',
-    dataIndex: 'status',
-    key: 'status',
-    render: (text: React.ReactNode) => {
-      if (text === 'success') {
-        return <Badge status="success" text="Đã xử lý" />;
-      }
-      return <Badge status="processing" text="Đang xử lý" />;
-    },
+    title: 'Loại dữ liệu',
+    dataIndex: 'dataType',
+    key: 'dataType',
   },
   {
     title: 'Actions',
@@ -87,13 +83,22 @@ const columns = [
   },
 ];
 const ListReport = () => {
-  const handleRowClick = (record) => {
-    console.log('Clicked row:', record);
-    history.push('/report-detail');
+  const [isModalOpenDoc, setIsModalOpenDoc] = useState(false);
+  const handleFilePicker = () => {
+    setIsModalOpenDoc(true);
+    console.log('OKEEEE');
+    // const fileInput = document.createElement('input');
+    // fileInput.type = 'file';
+    // fileInput.webkitdirectory = true;
+    // fileInput.click();
 
-    // Add your logic for handling row click event
+    // fileInput.addEventListener('change', (event) => {
+    //   const selectedFolder = event.target.files[0];
+    //   console.log('Selected folder:', selectedFolder);
+    //   // Perform any desired operations with the selected folder
+    // });
   };
-
+  const onFinishDocs = (data: ItemSelect) => {};
   return (
     <Card
       bordered={false}
@@ -103,16 +108,9 @@ const ListReport = () => {
       title="Danh sách báo cáo"
       extra={
         <Space>
-          <Dropdown
-            overlay={
-              <Menu mode="horizontal">
-                <Menu.Item key="1">Dung lượng file</Menu.Item>
-              </Menu>
-            }
-            trigger={['click']}
-          >
-            <Button icon={<DownOutlined />}>Gần đây nhất</Button>
-          </Dropdown>
+          <Button onClick={handleFilePicker} icon={<PlusOutlined />}>
+            Thêm mới
+          </Button>
         </Space>
       }
     >
@@ -126,9 +124,11 @@ const ListReport = () => {
         toolBarRender={false}
         dataSource={data}
         columns={columns}
-        onRow={(record) => ({
-          onClick: () => handleRowClick(record),
-        })}
+      />
+      <ModalPickDocs
+        isModalOpen={isModalOpenDoc}
+        setIsModalOpen={setIsModalOpenDoc}
+        onFinish={onFinishDocs}
       />
     </Card>
   );
