@@ -104,8 +104,8 @@ export default [
 
   {
     path: '/',
-    icon: 'dashboard',
-    component: './dashboard/analysis',
+    // icon: 'dashboard',
+    // component: './dashboard/analysis',
     // redirect: '/dashboard',
     routes: [
       {
